@@ -1,0 +1,18 @@
+# Réglages du site (GitHub Pages / Jekyll)
+title: "Cinema 4D – Support de cours"
+subtitle: "Semaine 1 · Motion Design · INA"
+description: "Support de cours Cinema 4D, semaine 1 : interface, splines, générateurs, modélisation polygonale, volumes, mise en scène et rendu."
+lang: fr
+markdown: kramdown
+kramdown:
+  input: GFM
+  hard_wrap: false
+  auto_ids: true
+exclude:
+  - README.md
+  - GUIDE-EDITION.md
+defaults:
+  - scope:
+      path: ""
+    values:
+      layout: default

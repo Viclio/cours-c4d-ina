@@ -1,0 +1,8 @@
+{%- comment -%}
+Vidéo YouTube. Usage : {% include youtube.html id="4qUR-gbwsRQ" caption="Légende" %}
+L'identifiant est la fin de l'adresse : youtube.com/watch?v=IDENTIFIANT
+{%- endcomment -%}
+<figure class="video">
+  <div class="embed"><iframe src="https://www.youtube-nocookie.com/embed/{{ include.id }}" title="{{ include.caption | default: 'Vidéo' }}" allowfullscreen loading="lazy"></iframe></div>
+  {% if include.caption %}<figcaption>{{ include.caption }}</figcaption>{% endif %}
+</figure>

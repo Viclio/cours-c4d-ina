@@ -1,0 +1,8 @@
+{%- comment -%}
+Vidéo hébergée dans le dépôt (dossier videos/).
+Usage : {% include video.html src="videos/mon-film.mp4" caption="Légende" %}
+{%- endcomment -%}
+<figure class="video">
+  <video controls preload="metadata" playsinline src="{{ include.src | relative_url }}"></video>
+  {% if include.caption %}<figcaption>{{ include.caption }}</figcaption>{% endif %}
+</figure>

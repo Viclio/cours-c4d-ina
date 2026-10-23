@@ -1,0 +1,7 @@
+{%- comment -%}
+Vidéo Vimeo. Usage : {% include vimeo.html id="123456789" caption="Légende" %}
+{%- endcomment -%}
+<figure class="video">
+  <div class="embed"><iframe src="https://player.vimeo.com/video/{{ include.id }}" title="{{ include.caption | default: 'Vidéo' }}" allowfullscreen loading="lazy"></iframe></div>
+  {% if include.caption %}<figcaption>{{ include.caption }}</figcaption>{% endif %}
+</figure>

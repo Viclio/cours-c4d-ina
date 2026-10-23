@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="{{ site.lang | default: 'fr' }}">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% if page.nav_order > 0 %}{{ page.title }} · {% endif %}{{ site.title }}</title>
+  <meta name="description" content="{{ site.description }}">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ '/assets/style.css' | relative_url }}">
+</head>
+<body>
+{% assign nav = site.pages | where_exp: "p", "p.nav_order != nil" | sort: "nav_order" %}
+<header class="topbar">
+  <button class="menu-btn" aria-label="Menu" aria-expanded="false">☰</button>
+  <a class="brand" href="{{ '/' | relative_url }}">{{ site.title }}</a>
+</header>
+<div class="shell">
+  <nav class="sidebar" aria-label="Sommaire du cours">
+    <a class="side-brand" href="{{ '/' | relative_url }}">
+      <span class="kicker">{{ site.subtitle }}</span>
+      <span class="side-title">{{ site.title }}</span>
+    </a>
+    <ol class="chapters">
+      {% for p in nav %}
+      <li class="{% if p.url == page.url %}current{% endif %}">
+        <a href="{{ p.url | relative_url }}">
+          {% if p.short %}<span class="num">Jour {{ p.nav_order }}</span><span class="lbl">{{ p.short }}</span>
+          {% else %}<span class="lbl">{{ p.title }}</span>{% endif %}
+        </a>
+        {% if p.url == page.url and p.nav_order > 0 and p.nav_order < 99 %}<ul class="toc" id="toc"></ul>{% endif %}
+      </li>
+      {% endfor %}
+    </ol>
+  </nav>
+  <main class="content">
+    <article>
+      {{ content }}
+    </article>
+    {% for p in nav %}{% if p.url == page.url %}{% assign i = forloop.index0 %}{% endif %}{% endfor %}
+    <nav class="pager">
+      {% assign prev_i = i | minus: 1 %}{% assign next_i = i | plus: 1 %}
+      {% if prev_i >= 0 %}{% assign pp = nav[prev_i] %}<a class="prev" href="{{ pp.url | relative_url }}"><small>Précédent</small>{{ pp.title }}</a>{% else %}<span></span>{% endif %}
+      {% if next_i < nav.size %}{% assign np = nav[next_i] %}<a class="next" href="{{ np.url | relative_url }}"><small>Suivant</small>{{ np.title }}</a>{% endif %}
+    </nav>
+    <footer class="foot">Support de cours Cinema 4D · INA · <a href="{{ '/credits.html' | relative_url }}">Crédits des illustrations</a></footer>
+  </main>
+</div>
+<div class="lightbox" hidden><img alt=""></div>
+<script src="{{ '/assets/site.js' | relative_url }}"></script>
+</body>
+</html>
