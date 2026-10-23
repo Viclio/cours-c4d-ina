@@ -46,6 +46,11 @@ Vous ne déplacez pas les objets quand vous naviguez : vous déplacez une camér
 - **Les 4 vues (Quad View)** : un clic molette n'importe où dans le viewport bascule entre la vue Perspective seule et les quatre vues (Haut, Droite, Face, Perspective).
 - **Touches F** : `F1` Perspective, `F2` Haut, `F3` Droite, `F4` Face, `F5` les quatre vues.
 - **Vue orthographique** : les vues Haut, Droite et Face n'ont pas de perspective. Les lignes parallèles restent parallèles. Indispensable pour aligner deux objets (poser un vase sur une table sans qu'il flotte ni traverse le plateau).
+- **Snap orthographique – `Ctrl + Alt + clic gauche` glissé** : depuis la vue Perspective, maintenez `Ctrl + Alt` et faites glisser avec le clic gauche, comme pour orbiter. La vue se verrouille sur la vue orthographique la plus proche (Face, Droite, Haut, etc.). Parfait pour modéliser rapidement ou placer un objet sans quitter la vue unique. Pour revenir aux 4 vues si besoin : clic molette ou `F5`.
+
+![Snap orthographique sur un fauteuil de l'Asset Browser](images/snap-orthographique.jpg){: .w100}
+*Snap orthographique : `Ctrl + Alt + clic gauche` glissé fait passer la vue Perspective (à gauche) en vue de Face verrouillée (à droite). Objet : Chesterfield Sofa – 1 Seat, Asset Browser. — Capture Cinema 4D 2027*
+
 - **Recadrer sur la sélection (Frame Selected) – touche `S`** : la vue se centre sur l'objet sélectionné, qui devient le pivot de l'orbite. C'est le réflexe numéro un.
 - **Recadrer sur tout (Frame All) – touche `H`** : la vue englobe toute la scène. Utile quand on s'est perdu.
 - Ces deux touches fonctionnent aussi quand la souris survole le Gestionnaire d'objets.
@@ -61,6 +66,18 @@ Dans le menu Affichage (Display) du viewport, on choisit comment la carte graphi
 - **Lignes cachées (Hidden Line)** : n'affiche que les arêtes visibles, comme un dessin technique.
 - **Lignes (Lines)** et style **Fil de fer (Wireframe) – `N~H`** : tout le maillage, y compris les arêtes cachées.
 - **Boîte (Box)** et **Squelette (Skeleton)** : affichages ultra-légers pour les scènes très lourdes.
+
+**Couleur d'affichage des objets (Color)**
+
+Toujours dans le menu Affichage (Display) du viewport, le réglage **Couleur (Color)** choisit d'où vient la couleur des objets dans la vue :
+
+- **Couleur d'objet (Object Color)** : la couleur d'affichage définie dans l'onglet Basique de chaque objet. Les objets sans couleur d'affichage restent gris. Pratique pour repérer les sous-ensembles d'une maquette.
+- **Matériaux (Materials)** : la couleur des matériaux appliqués. C'est l'aperçu le plus proche du rendu.
+- **Aléatoire (Random)** : une couleur différente par objet, attribuée automatiquement. Idéal pour voir d'un coup d'œil comment un modèle est découpé en objets.
+- **Couleur de calque (Layer Color)** : la couleur du calque auquel appartient l'objet. Permet de vérifier que chaque objet est rangé dans le bon calque.
+
+![Les quatre modes de couleur du viewport sur la scène Beach – Low Poly](images/vue-couleurs.jpg){: .w100}
+*La même scène dans les quatre modes de couleur. Pour la vue Couleur d'objet, une couleur d'affichage a été donnée à chaque sous-ensemble (camping-car, accessoires, végétation, île). — Capture Cinema 4D 2027, scène Beach – Low Poly*
 
 ## Le Gestionnaire d'objets et les hiérarchies
 
@@ -223,6 +240,7 @@ On assemble les grands volumes sans détails. Si les proportions sont fausses ic
 | Déplacement latéral | `Alt + clic molette` ou `1 + clic gauche` | `Option + clic molette` ou `1 + clic gauche` |
 | Basculer 1 vue / 4 vues | `Clic molette` | `Clic molette` |
 | Vues Persp. / Haut / Droite / Face / Toutes | `F1` à `F5` | `F1` à `F5` (avec `fn` si besoin) |
+| Snap orthographique (verrouiller une vue ortho) | `Ctrl + Alt + clic gauche` glissé | `Cmd + Option + clic gauche` glissé |
 | Recadrer sur la sélection | `S` | `S` |
 | Recadrer sur tout | `H` | `H` |
 | Gouraud / Gouraud + lignes / Rapide | `N~A` / `N~B` / `N~C` | `N~A` / `N~B` / `N~C` |
