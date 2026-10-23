@@ -19,8 +19,8 @@ Ce document accompagne les cinq premiers jours de formation sur Cinema 4D. Il su
 
 ## Sommaire
 
-{% assign jours = site.pages | where_exp: "p", "p.nav_order > 0 and p.nav_order < 99" | sort: "nav_order" %}
-{% for p in jours %}
+{% assign jours = site.pages | where_exp: "p", "p.nav_order > 0" | sort: "nav_order" %}
+{% for p in jours %}{% if p.nav_order < 99 %}
 - [{{ p.title }}]({{ p.url | relative_url }})
-{% endfor %}
+{%- endif %}{% endfor %}
 - [Crédits des illustrations]({{ "/credits.html" | relative_url }})
