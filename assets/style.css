@@ -127,3 +127,15 @@ figure.video figcaption { font-size: .86rem; color: var(--muted); margin-top: .5
   img.w60, img.w75 { width: 100%; }
   code { white-space: normal; }
 }
+
+/* Lien vers les autres semaines (menu latéral) */
+.weeks { margin: 1.4rem .4rem 0; padding-top: 1rem; border-top: 1px solid var(--line); font-size: .85rem; color: var(--muted); }
+.weeks a { font-weight: 600; margin-right: .5rem; }
+
+/* Cartes des semaines (accueil général) */
+.week-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1rem; margin: 1.5rem 0 2rem; }
+.week-card { display: block; padding: 1.2rem 1.3rem; border: 1px solid var(--line); border-radius: 10px; text-decoration: none; color: var(--ink); background: var(--soft); }
+.week-card:hover { border-color: var(--accent); }
+.week-card .num { display: block; font-size: .72rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--accent); }
+.week-card strong { display: block; font-size: 1.15rem; margin: .3rem 0 .5rem; }
+.week-card span.txt { color: var(--muted); font-size: .95rem; }

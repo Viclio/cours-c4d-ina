@@ -1,4 +1,6 @@
 ---
+semaine: 1
+redirect_from: /jour-2.html
 title: "Jour 2 – Splines, extrusion, déformateurs et premiers polygones"
 short: "Splines, extrusion, déformateurs et premiers polygones"
 nav_order: 2

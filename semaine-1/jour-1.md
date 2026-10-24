@@ -1,4 +1,6 @@
 ---
+semaine: 1
+redirect_from: /jour-1.html
 title: "Jour 1 – Interface, primitives et premiers pas"
 short: "Interface, primitives et premiers pas"
 nav_order: 1

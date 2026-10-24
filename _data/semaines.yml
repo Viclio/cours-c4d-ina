@@ -1,0 +1,10 @@
+# Une entrée par semaine de cours. "id" correspond au champ "semaine" des pages
+# et au nom du dossier (semaine-1, semaine-2…).
+- id: 1
+  titre: "Semaine 1 – Modélisation"
+  sous_titre: "Semaine 1 · Motion Design · INA"
+  resume: "Interface, splines, générateurs, modélisation polygonale et en volume, mise en scène et rendu. Projet fil rouge : un petit train jouet."
+- id: 2
+  titre: "Semaine 2 – Texture, lumière et mouvement"
+  sous_titre: "Semaine 2 · Motion Design · INA"
+  resume: "Substance 3D Painter, UVs et matériaux Redshift, éclairage et compositing, animation et caméras, MoGraph et simulations de tissu."

@@ -1,4 +1,6 @@
 ---
+semaine: 1
+redirect_from: /jour-5.html
 title: "Jour 5 – Retopologie, mise en scène, éclairage et rendu final"
 short: "Retopologie, mise en scène, éclairage et rendu final"
 nav_order: 5

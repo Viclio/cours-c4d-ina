@@ -1,4 +1,6 @@
 ---
+semaine: 1
+redirect_from: /credits.html
 title: "Crédits des illustrations"
 nav_order: 99
 ---

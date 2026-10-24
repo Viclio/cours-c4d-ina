@@ -4,7 +4,7 @@ Tout le contenu est écrit en **Markdown** : du texte simple, avec quelques sign
 
 ## Modifier une page
 
-1. Sur github.com, ouvrez le fichier (par exemple `jour-2.md`).
+1. Sur github.com, ouvrez le fichier (par exemple `semaine-1/jour-2.md`). Chaque semaine a son dossier : `semaine-1/`, `semaine-2/`…
 2. Cliquez sur l'icône crayon (*Edit this file*).
 3. Modifiez le texte, puis cliquez sur **Commit changes**.
 
@@ -29,7 +29,7 @@ Les tableaux s'écrivent ainsi :
 
 ## Ajouter une image
 
-1. Déposez l'image dans le dossier `images/` (*Add file › Upload files*).
+1. Déposez l'image dans le dossier `images/` **de la semaine** (par exemple `semaine-2/images/`, via *Add file › Upload files*).
 2. Dans la page, écrivez l'image puis, **sur la ligne juste en dessous**, la légende en italique :
 
 ```markdown
@@ -61,10 +61,11 @@ Les tableaux s'écrivent ainsi :
 
 ## Ajouter une page (par exemple un jour 6)
 
-Créez `jour-6.md` avec cet en-tête, puis le contenu :
+Dans le dossier de la semaine, créez `jour-6.md` avec cet en-tête, puis le contenu :
 
 ```markdown
 ---
+semaine: 2
 title: "Jour 6 – Titre du jour"
 short: "Titre du jour"
 nav_order: 6
@@ -75,11 +76,19 @@ nav_order: 6
 Contenu…
 ```
 
-`nav_order` décide de la place dans le menu. La page apparaît automatiquement dans le menu, dans le sommaire de l'accueil et dans les boutons Précédent / Suivant.
+`semaine` indique à quelle semaine la page appartient (même numéro que le dossier) et `nav_order` sa place dans le menu. La page apparaît automatiquement dans le menu de sa semaine, dans le sommaire de l'accueil de la semaine et dans les boutons Précédent / Suivant.
+
+## Ajouter une semaine (par exemple une semaine 3)
+
+1. Dans `_data/semaines.yml`, ajoutez une entrée `id: 3` avec son titre, son sous-titre et son résumé (copiez celle de la semaine 2).
+2. Créez le dossier `semaine-3/` en copiant `semaine-2/index.md` et `semaine-2/credits.md`, et remplacez `semaine: 2` par `semaine: 3` dans leur en-tête (et `/semaine-2/credits.html` par `/semaine-3/credits.html` dans `index.md`).
+3. Ajoutez les pages `jour-1.md`… avec `semaine: 3` dans l'en-tête, et les images dans `semaine-3/images/`.
+
+La semaine apparaît alors sur l'accueil général et dans le lien « Autres semaines » du menu.
 
 ## Changer le titre ou les couleurs
 
-- Titre et sous-titre du site : `_config.yml`.
+- Titre du site : `_config.yml`. Titre, sous-titre et résumé de chaque semaine : `_data/semaines.yml`.
 - Couleurs : en haut de `assets/style.css` (`--accent` est la couleur orange).
 
 ## Prévisualiser sur son ordinateur (facultatif)

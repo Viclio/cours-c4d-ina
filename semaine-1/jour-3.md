@@ -1,4 +1,6 @@
 ---
+semaine: 1
+redirect_from: /jour-3.html
 title: "Jour 3 – Générateurs avancés, shading et subdivision de surface"
 short: "Générateurs avancés, shading et subdivision de surface"
 nav_order: 3

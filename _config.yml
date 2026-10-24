@@ -1,7 +1,7 @@
 # Réglages du site (GitHub Pages / Jekyll)
 title: "Cinema 4D – Support de cours"
-subtitle: "Semaine 1 · Motion Design · INA"
-description: "Support de cours Cinema 4D, semaine 1 : interface, splines, générateurs, modélisation polygonale, volumes, mise en scène et rendu."
+subtitle: "Motion Design · INA"
+description: "Supports de cours Cinema 4D (INA) : semaine 1, modélisation ; semaine 2, texture, lumière, animation et MoGraph."
 lang: fr
 markdown: kramdown
 kramdown:
@@ -16,3 +16,5 @@ defaults:
       path: ""
     values:
       layout: default
+plugins:
+  - jekyll-redirect-from

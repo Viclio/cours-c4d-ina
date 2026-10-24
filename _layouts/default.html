@@ -3,25 +3,30 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>{% if page.nav_order > 0 %}{{ page.title }} · {% endif %}{{ site.title }}</title>
-  <meta name="description" content="{{ site.description }}">
+  {%- if page.semaine -%}
+    {%- assign sem = site.data.semaines | where: "id", page.semaine | first -%}
+    {%- assign nav = site.pages | where: "semaine", page.semaine | sort: "nav_order" -%}
+    {%- assign home = '/semaine-' | append: page.semaine | append: '/' -%}
+  {%- endif %}
+  <title>{% if page.semaine and page.nav_order > 0 %}{{ page.title }} · {% endif %}{% if sem %}{{ sem.titre }} · {% endif %}{{ site.title }}</title>
+  <meta name="description" content="{% if sem %}{{ sem.resume }}{% else %}{{ site.description }}{% endif %}">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="{{ '/assets/style.css' | relative_url }}">
 </head>
 <body>
-{% assign nav = site.pages | where_exp: "p", "p.nav_order != nil" | sort: "nav_order" %}
 <header class="topbar">
   <button class="menu-btn" aria-label="Menu" aria-expanded="false">☰</button>
-  <a class="brand" href="{{ '/' | relative_url }}">{{ site.title }}</a>
+  <a class="brand" href="{{ home | default: '/' | relative_url }}">{% if sem %}{{ sem.titre }}{% else %}{{ site.title }}{% endif %}</a>
 </header>
 <div class="shell">
   <nav class="sidebar" aria-label="Sommaire du cours">
-    <a class="side-brand" href="{{ '/' | relative_url }}">
-      <span class="kicker">{{ site.subtitle }}</span>
+    <a class="side-brand" href="{{ home | default: '/' | relative_url }}">
+      <span class="kicker">{% if sem %}{{ sem.sous_titre }}{% else %}{{ site.subtitle }}{% endif %}</span>
       <span class="side-title">{{ site.title }}</span>
     </a>
     <ol class="chapters">
+      {% if page.semaine %}
       {% for p in nav %}
       <li class="{% if p.url == page.url %}current{% endif %}">
         <a href="{{ p.url | relative_url }}">
@@ -31,19 +36,33 @@
         {% if p.url == page.url and p.nav_order > 0 and p.nav_order < 99 %}<ul class="toc" id="toc"></ul>{% endif %}
       </li>
       {% endfor %}
+      {% else %}
+      {% for s in site.data.semaines %}
+      <li><a href="{{ '/semaine-' | append: s.id | append: '/' | relative_url }}"><span class="num">Semaine {{ s.id }}</span><span class="lbl">{{ s.titre | split: '– ' | last }}</span></a></li>
+      {% endfor %}
+      {% endif %}
     </ol>
+    {% if page.semaine and site.data.semaines.size > 1 %}
+    <p class="weeks">Autres semaines :
+      {% for s in site.data.semaines %}{% if s.id != page.semaine %}<a href="{{ '/semaine-' | append: s.id | append: '/' | relative_url }}">Semaine {{ s.id }}</a> {% endif %}{% endfor %}
+    </p>
+    {% endif %}
   </nav>
   <main class="content">
     <article>
       {{ content }}
     </article>
+    {% if page.semaine %}
     {% for p in nav %}{% if p.url == page.url %}{% assign i = forloop.index0 %}{% endif %}{% endfor %}
     <nav class="pager">
       {% assign prev_i = i | minus: 1 %}{% assign next_i = i | plus: 1 %}
       {% if prev_i >= 0 %}{% assign pp = nav[prev_i] %}<a class="prev" href="{{ pp.url | relative_url }}"><small>Précédent</small>{{ pp.title }}</a>{% else %}<span></span>{% endif %}
       {% if next_i < nav.size %}{% assign np = nav[next_i] %}<a class="next" href="{{ np.url | relative_url }}"><small>Suivant</small>{{ np.title }}</a>{% endif %}
     </nav>
-    <footer class="foot">Support de cours Cinema 4D · INA · <a href="{{ '/credits.html' | relative_url }}">Crédits des illustrations</a></footer>
+    <footer class="foot">Support de cours Cinema 4D · INA · Semaine {{ page.semaine }} · <a href="{{ home | append: 'credits.html' | relative_url }}">Crédits des illustrations</a></footer>
+    {% else %}
+    <footer class="foot">Support de cours Cinema 4D · INA</footer>
+    {% endif %}
   </main>
 </div>
 <div class="lightbox" hidden><img alt=""></div>

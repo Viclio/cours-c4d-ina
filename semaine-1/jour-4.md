@@ -1,4 +1,6 @@
 ---
+semaine: 1
+redirect_from: /jour-4.html
 title: "Jour 4 – Outils de modélisation, topologie et modélisation en volume"
 short: "Outils de modélisation, topologie et modélisation en volume"
 nav_order: 4
