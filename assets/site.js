@@ -17,6 +17,11 @@
   document.querySelectorAll('.sidebar a').forEach(function (a) {
     a.addEventListener('click', function () { document.body.classList.remove('nav-open'); });
   });
+  // Ne jamais agrandir une image au-delà de sa taille réelle (évite le flou).
+  document.querySelectorAll('.content article img').forEach(function (img) {
+    function cap() { if (img.naturalWidth) img.style.maxWidth = 'min(100%, ' + img.naturalWidth + 'px)'; }
+    if (img.complete) cap(); else img.addEventListener('load', cap);
+  });
   var box = document.querySelector('.lightbox'), big = box.querySelector('img');
   document.querySelectorAll('.content article img').forEach(function (img) {
     img.addEventListener('click', function () { big.src = img.src; big.alt = img.alt; box.hidden = false; });
