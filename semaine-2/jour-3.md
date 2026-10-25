@@ -120,20 +120,23 @@ Le halo autour des hautes lumières vient de deux phénomènes réels :
 Pour garder toute la dynamique de l’image et des couleurs identiques :
 
 1. Dans Cinema 4D, rendez au format **OpenEXR 32 bits** (flottant).
-2. Dans After Effects, réglez les paramètres du projet (Fichier \> Paramètres du projet \> Couleur) en gestion **OCIO**, espace de travail **ACEScg** (configuration ACES 1.3).
+2. Dans After Effects, ouvrez **Fichier › Paramètres du projet**, onglet **Couleur**, et réglez :
+   - **Moteur de couleurs** : **OCIO color managed** ;
+   - **Configuration OCIO** : **ACES 2.0 CG v4.0** ;
+   - **Résolution** : **32 bits par couche (flottant)** ;
+   - **Espace colorimétrique de travail** : **scene_linear: ACEScg** ;
+   - **Espace colorimétrique de l’affichage** : **sRGB – Display/ACES 2.0 – SDR 100 nits (Rec.709)**.
+
+   ![After Effects : paramètres du projet en ACES 2.0](images/ae-parametres-projet-aces2.jpg){: .w75}
+   *Paramètres du projet, onglet Couleur : moteur OCIO, configuration ACES 2.0 CG v4.0, espace de travail ACEScg et affichage sRGB – Display/ACES 2.0 – SDR 100 nits (Rec.709). — Capture After Effects*
+
 3. **Si ces réglages ne sont pas respectés, les couleurs ne correspondront pas.**
 4. Pour un étalonnage « cinéma » rapide, utilisez **Red Giant Looks**.
-5. À l’export, dans les options de couleur du module de sortie, choisissez **Tout afficher** puis **sRGB – Display (ACEScg) – SDR**.
-
-![After Effects : réglage colorimétrique du projet en OCIO / ACEScg](images/ae-projet-ocio-acescg.png){: .w40}
-*After Effects : réglage colorimétrique du projet en OCIO / ACEScg. — Document d'origine*
-
-![After Effects : espace de sortie sRGB – Display pour l’export final](images/ae-sortie-srgb.png){: .w40}
-*After Effects : espace de sortie sRGB – Display pour l’export final. — Document d'origine*
+5. À l’export, dans les options de couleur du module de sortie, cochez **Tout afficher** et choisissez la même transformation que l’affichage : **sRGB – Display/ACES 2.0 – SDR 100 nits (Rec.709)**.
 
 ## Points de vigilance
 
 - Une seule key light, cohérente avec la scène.
 - Métal et verre : prévoyez toujours quelque chose à refléter.
 - Brouillard volumétrique : retirez le volume des lumières trop présentes.
-- After Effects : EXR 32 bits + projet en ACEScg, sinon les couleurs sont fausses.
+- After Effects : EXR 32 bits + projet OCIO en ACES 2.0 (travail ACEScg), sinon les couleurs sont fausses.
