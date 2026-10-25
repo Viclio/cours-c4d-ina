@@ -1,8 +1,9 @@
 {%- comment -%}
-Vidéo hébergée dans le dépôt (dossier videos/).
+Vidéo MP4 : fichier du dépôt (dossier videos/) ou adresse complète (https://…).
 Usage : {% include video.html src="videos/mon-film.mp4" caption="Légende" %}
 {%- endcomment -%}
+{%- if include.src contains '://' -%}{%- assign vsrc = include.src -%}{%- else -%}{%- assign vsrc = include.src | relative_url -%}{%- endif -%}
 <figure class="video">
-  <video controls preload="metadata" playsinline src="{{ include.src | relative_url }}"></video>
+  <video controls preload="metadata" playsinline src="{{ vsrc }}"></video>
   {% if include.caption %}<figcaption>{{ include.caption }}</figcaption>{% endif %}
 </figure>
