@@ -132,7 +132,15 @@ Pour garder toute la dynamique de l’image et des couleurs identiques :
 
 3. **Si ces réglages ne sont pas respectés, les couleurs ne correspondront pas.**
 4. Pour un étalonnage « cinéma » rapide, utilisez **Red Giant Looks**.
-5. À l’export, dans les options de couleur du module de sortie, cochez **Tout afficher** et choisissez la même transformation que l’affichage : **sRGB – Display/ACES 2.0 – SDR 100 nits (Rec.709)**.
+5. **À l’export** : ajoutez la composition à la **file d’attente de rendu**, puis cliquez sur le lien bleu du **Module de sortie** pour ouvrir ses paramètres.
+
+   ![La file d’attente de rendu d’After Effects](images/ae-file-attente-module-sortie.jpg){: .w90}
+   *La file d’attente de rendu : un clic sur le lien du Module de sortie ouvre ses paramètres. — Capture After Effects*
+
+6. Dans l’onglet **Couleur** du module de sortie, cochez **Tout afficher**, puis choisissez comme **Espace color. de sortie** : **sRGB – Display/ACES 2.0 – SDR 100 nits (Rec.709)**, la même transformation que l’affichage du projet. La description confirme la conversion : de l’espace de travail ACEScg vers sRGB – Display/ACES 2.0.
+
+   ![Paramètres du module de sortie, onglet Couleur, en ACES 2.0](images/ae-module-sortie-couleur-aces2.jpg){: .w60}
+   *Paramètres du module de sortie, onglet Couleur : espace de sortie sRGB – Display/ACES 2.0 – SDR 100 nits (Rec.709), avec Tout afficher coché. — Capture After Effects*
 
 ## Points de vigilance
 
