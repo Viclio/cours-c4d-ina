@@ -50,8 +50,8 @@ Vous ne déplacez pas les objets quand vous naviguez : vous déplacez une camér
 - **Vue orthographique** : les vues Haut, Droite et Face n'ont pas de perspective. Les lignes parallèles restent parallèles. Indispensable pour aligner deux objets (poser un vase sur une table sans qu'il flotte ni traverse le plateau).
 - **Snap orthographique – `Ctrl + Alt + clic gauche` glissé** : depuis la vue Perspective, maintenez `Ctrl + Alt` et faites glisser avec le clic gauche, comme pour orbiter. La vue se verrouille sur la vue orthographique la plus proche (Face, Droite, Haut, etc.). Parfait pour modéliser rapidement ou placer un objet sans quitter la vue unique. Pour revenir aux 4 vues si besoin : clic molette ou `F5`.
 
-![Snap orthographique sur un fauteuil de l'Asset Browser](images/snap-orthographique.jpg){: .w100}
-*Snap orthographique : `Ctrl + Alt + clic gauche` glissé fait passer la vue Perspective (à gauche) en vue de Face verrouillée (à droite). Objet : Chesterfield Sofa – 1 Seat, Asset Browser. — Capture Cinema 4D 2027*
+![Snap orthographique sur la scène Beach – Low Poly](images/snap-orthographique.jpg){: .w100}
+*Snap orthographique : `Ctrl + Alt + clic gauche` glissé fait passer la vue Perspective (à gauche) en vue de Face verrouillée (à droite). Scène : Beach – Low Poly. — Capture Cinema 4D 2027*
 
 - **Recadrer sur la sélection (Frame Selected) – touche `S`** : la vue se centre sur l'objet sélectionné, qui devient le pivot de l'orbite. C'est le réflexe numéro un.
 - **Recadrer sur tout (Frame All) – touche `H`** : la vue englobe toute la scène. Utile quand on s'est perdu.
