@@ -18,10 +18,10 @@ nav_order: 1
 
 ## Scène de découverte
 
-Pour explorer l'interface sur une vraie scène, ouvrez l'**Explorateur d'assets (Asset Browser)** et chargez la scène d'exemple **Living Room – Low Poly** (Example Scenes > Disciplines > Low Poly). Elle permet de tester la navigation et d'observer comment un professionnel organise sa hiérarchie.
+Pour explorer l'interface sur une vraie scène, téléchargez la scène d'exemple **Beach – Low Poly** : **[Beach-Low-Poly-Final.c4d](fichiers/Beach-Low-Poly-Final.c4d)**. Elle permet de tester la navigation et d'observer comment un professionnel organise sa hiérarchie (nuls, calques, rigs d'éclairage). D'autres scènes d'exemple sont disponibles dans l'**Explorateur d'assets (Asset Browser)**, rubrique Example Scenes.
 
-![Scène d'exemple Low Poly de l'Asset Browser ](images/scene-low-poly.png){: .w60}
-*Scène d'exemple Low Poly de l'Asset Browser : idéale pour s'entraîner à naviguer. — Illustration du document d'origine*
+![La scène d'exemple Beach – Low Poly dans le viewport](images/scene-beach-low-poly.jpg){: .w75}
+*La scène d'exemple Beach – Low Poly (scène de Gustavo Henrique) : idéale pour s'entraîner à naviguer. — Capture Cinema 4D*
 
 ## Navigation dans le viewport
 
