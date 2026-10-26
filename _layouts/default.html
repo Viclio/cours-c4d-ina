@@ -21,6 +21,7 @@
 </header>
 <div class="shell">
   <nav class="sidebar" aria-label="Sommaire du cours">
+    <a class="home-link" href="{{ '/' | relative_url }}">← Accueil</a>
     <a class="side-brand" href="{{ home | default: '/' | relative_url }}">
       <span class="kicker">{% if sem %}{{ sem.sous_titre }}{% else %}{{ site.subtitle }}{% endif %}</span>
       <span class="side-title">{{ site.title }}</span>

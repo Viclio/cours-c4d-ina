@@ -139,3 +139,7 @@ figure.video figcaption { font-size: .86rem; color: var(--muted); margin-top: .5
 .week-card .num { display: block; font-size: .72rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--accent); }
 .week-card strong { display: block; font-size: 1.15rem; margin: .3rem 0 .5rem; }
 .week-card span.txt { color: var(--muted); font-size: .95rem; }
+
+/* Lien discret vers l'accueil général (haut du menu latéral) */
+.home-link { display: inline-block; margin: 0 .4rem .7rem; font-size: .78rem; font-weight: 600; color: var(--muted); text-decoration: none; }
+.home-link:hover { color: var(--accent); }
