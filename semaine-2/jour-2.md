@@ -180,6 +180,8 @@ Le casque sert d’exercice complet, de Cinema 4D à Painter puis retour.
 
 Si vous importez les textures comme images (PNG), chaque carte doit aller au bon endroit **et** avec le bon **espace colorimétrique**. C’est la source d’erreur la plus fréquente.
 
+Textures en UDIM (un fichier par case) : remplacez le numéro de case par le token `<UDIM>` dans le chemin de chaque texture (voir Jour 1, « Le workflow UDIM entre Cinema 4D et Painter »).
+
 | **Carte**     | **Où la brancher**                                                 | **Espace colorimétrique**                                                                            |
 |---------------|--------------------------------------------------------------------|------------------------------------------------------------------------------------------------------|
 | **Color**     | Entrée Base Color du matériau                                      | **sRGB**                                                                                             |
