@@ -14,6 +14,7 @@ nav_order: 2
 - Réaliser un projet complet Cinema 4D → Painter → Cinema 4D (le casque).
 - Brancher correctement des textures PBR dans un matériau Redshift.
 - Texturer directement dans Cinema 4D avec des textures procédurales.
+- Préparer des zones de couleur (Vertex Color) et travailler en UDIM entre Cinema 4D et Painter.
 - Créer des matériaux de verre réalistes.
 
 ## Le dépliage UV : emballer un cadeau
@@ -146,6 +147,72 @@ On déplie une sphère comme on éplucherait une orange : deux capuchons et une 
 
 Aide Maxon : [UV Rectangularize](https://help.maxon.net/c4d/en-us/Content/html/TOOLUVRECTANGULARIZE.html), [UV Packing](https://help.maxon.net/c4d/en-us/Content/html/TOOLUVPACKING.html).
 
+## Des zones de couleur avec le Vertex Color
+
+Dans Painter, on a souvent besoin de **masquer une zone précise** d’un objet : la roue d’un essieu, une vitre, un logo. Plutôt que de la peindre à la main, on la prépare dans Cinema 4D avec des **couleurs de sommets** (Vertex Color). Painter les transforme en **carte ID**, et chaque couleur devient un masque en un clic.
+
+**1. Dans Cinema 4D : peindre des couleurs unies**
+
+- Ajoutez un tag **Vertex Color** à l’objet (clic droit › **Other Tags › Vertex Color**).
+- Sélectionnez les sommets (ou les polygones) d’une zone, puis appliquez-leur une **couleur unie** avec l’outil **Peinture** (Paint Tool). Recommencez avec une autre couleur pour chaque zone.
+- Choisissez des couleurs **franches et bien distinctes** (rouge, vert, bleu…) : Painter les reconnaîtra plus facilement.
+
+![Ajout d’un tag Vertex Color dans Cinema 4D](images/c4d-tag-vertex-color.png){: .w75}
+*Clic droit sur l’objet › Other Tags › Vertex Color. — Capture Cinema 4D*
+
+![Un essieu peint avec deux couleurs de sommets](images/c4d-vertex-color-essieu.png){: .w60}
+*L’essieu de la locomotive : l’axe en rouge, les roues en vert, chaque zone peinte d’une couleur unie avec le Paint Tool. — Capture Cinema 4D*
+
+**2. À l’export FBX : cocher Vertex Colors**
+
+Dans les réglages d’export FBX (Fichier › Exporter › FBX), cochez bien **Vertex Colors** dans la partie Geometry. Sans cette case, les couleurs restent dans Cinema 4D et Painter ne reçoit rien.
+
+![Réglages d’export FBX avec Vertex Colors coché](images/c4d-export-fbx-vertex-colors.png){: .w50}
+*Réglages d’export FBX : l’option Vertex Colors doit être cochée. — Capture Cinema 4D*
+
+**3. Dans Painter : Color Source = Vertex color**
+
+Au moment du baking des mesh maps (`F8`), sélectionnez la carte **ID** dans la liste des bakers, puis, dans ses réglages (**Mesh map settings**), choisissez **Color source : Vertex color**. Painter calcule alors la carte ID à partir des couleurs de sommets.
+
+![Réglage Color Source sur Vertex color pour la carte ID](images/painter-id-color-source-vertex.png){: .w60}
+*Mesh Map Bakers › ID › Color source : Vertex color. — Capture Substance 3D Painter*
+
+**4. Utiliser la carte ID**
+
+Dans le masque d’un calque, ajoutez un effet **Color Selection** et cliquez sur la couleur voulue dans la carte ID : le calque ne s’applique plus qu’à cette zone. Une seule carte ID suffit pour isoler autant de zones que de couleurs peintes.
+
+## Le workflow UDIM entre Cinema 4D et Painter
+
+Les **UDIM** (ou UV Tiles) répartissent les UVs d’un même matériau sur **plusieurs cases** : la case 0-1 s’appelle **1001**, celle à sa droite **1002**, et ainsi de suite. Chaque case reçoit sa propre texture : on obtient beaucoup plus de résolution sans multiplier les matériaux. Dans Cinema 4D, il suffit de placer des îlots UV en dehors de la case 0-1 (le bouton **Move to tile** du panneau Coordonnées de l’éditeur UV les déplace d’une case).
+
+**1. Dans Painter : choisir ce qui devient un Texture Set**
+
+À la création du projet, cochez **Use UV Tile workflow**. **Attention : Painter range les UDIM dans des Texture Sets**, et il faut choisir comment :
+
+- **Preserve UV Tile layout per material and enable painting across tiles** : les **matériaux** restent les Texture Sets, et chaque Texture Set contient ses cases UDIM. On peint d’une case à l’autre sans couture.
+- **Convert UV Tiles into individual Texture Sets (legacy)** : chaque **case UDIM** devient un Texture Set séparé.
+
+Ce choix ne peut plus être modifié une fois le projet créé.
+
+![La fenêtre Nouveau projet de Painter avec les réglages UDIM](images/painter-nouveau-projet-udim.png){: .w60}
+*Nouveau projet : Use UV Tile workflow, puis le choix entre garder les matériaux comme Texture Sets ou convertir chaque case en Texture Set. — Capture Substance 3D Painter*
+
+**2. Exporter les textures en PNG**
+
+Exportez les textures en **PNG** (Fichier › Exporter les textures). Painter écrit **un fichier par case et par canal**, avec le numéro de la case dans le nom : `…_BaseColor.1001.png`, `…_BaseColor.1002.png`… Le format SBSAR, lui, n’est pas compatible avec les UDIM.
+
+**3. Dans Cinema 4D : remplacer le numéro par le token &lt;UDIM&gt;**
+
+Chargez la texture de la première case (`….1001.png`) dans le nœud Texture de Redshift, puis, dans le champ **Path**, remplacez le numéro **1001** par le token **`<UDIM>`**. Redshift charge alors automatiquement la bonne image pour chaque case. Répétez l’opération pour chaque canal (couleur, rugosité, métal, normal…), en gardant les espaces colorimétriques habituels (voir plus bas, « Brancher les textures dans Redshift »).
+
+![Le chemin de texture avec le numéro de case 1001](images/c4d-texture-udim-1001.png){: .w50}
+*Avant : le chemin pointe sur une seule case, `…Metallic.1001.png`. — Capture Cinema 4D*
+
+![Le chemin de texture avec le token UDIM](images/c4d-texture-udim-token.png){: .w50}
+*Après : `…Metallic.<UDIM>.png`, toutes les cases sont chargées. — Capture Cinema 4D*
+
+Aide Maxon : [UDIM and UVTILE](https://help.maxon.net/c4d/en-us/Content/_REDSHIFT_/html/UDIM+and+UVTILE.html).
+
 ## Projet : le casque de football américain
 
 Le casque sert d’exercice complet, de Cinema 4D à Painter puis retour.
@@ -180,7 +247,7 @@ Le casque sert d’exercice complet, de Cinema 4D à Painter puis retour.
 
 Si vous importez les textures comme images (PNG), chaque carte doit aller au bon endroit **et** avec le bon **espace colorimétrique**. C’est la source d’erreur la plus fréquente.
 
-Textures en UDIM (un fichier par case) : remplacez le numéro de case par le token `<UDIM>` dans le chemin de chaque texture (voir Jour 1, « Le workflow UDIM entre Cinema 4D et Painter »).
+Textures en UDIM (un fichier par case) : remplacez le numéro de case par le token `<UDIM>` dans le chemin de chaque texture (voir plus haut, « Le workflow UDIM entre Cinema 4D et Painter »).
 
 | **Carte**     | **Où la brancher**                                                 | **Espace colorimétrique**                                                                            |
 |---------------|--------------------------------------------------------------------|------------------------------------------------------------------------------------------------------|
@@ -277,6 +344,9 @@ Aide Maxon : [Standard Material](https://help.maxon.net/c4d/en-us/Content/_REDSH
 
 ## Points de vigilance
 
+- Vertex Color : cochez Vertex Colors à l’export FBX, puis Color source = Vertex color pour la carte ID dans Painter.
+- UDIM : choisissez dès la création du projet Painter ce qui devient un Texture Set (matériaux ou cases), exportez en PNG.
+- Dans Cinema 4D, remplacez le numéro de case (1001) par `<UDIM>` dans le chemin des textures.
 - Automatic UV et UV Projection ignorent les coutures : pour les utiliser, passez par UV Unwrap and Relax.
 - Les UVs d’un même matériau ne se chevauchent pas et restent dans la case 0-1.
 - Color en sRGB, toutes les autres cartes en Raw.
