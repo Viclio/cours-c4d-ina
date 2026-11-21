@@ -131,13 +131,25 @@ Pour garder toute la dynamique de l’image et des couleurs identiques :
    *Paramètres du projet, onglet Couleur : moteur OCIO, configuration ACES 2.0 CG v4.0, espace de travail ACEScg et affichage sRGB – Display/ACES 2.0 – SDR 100 nits (Rec.709). — Capture After Effects*
 
 3. **Si ces réglages ne sont pas respectés, les couleurs ne correspondront pas.**
-4. Pour un étalonnage « cinéma » rapide, utilisez **Red Giant Looks**.
-5. **À l’export** : ajoutez la composition à la **file d’attente de rendu**, puis cliquez sur le lien bleu du **Module de sortie** pour ouvrir ses paramètres.
+4. **Interpréter le métrage EXR en ACEScg** : dans le panneau **Projet**, sélectionnez le métrage OpenEXR, puis **Interpréter un métrage › Principal…** (`Ctrl + Alt + G`, `Cmd + Option + G` sur Mac). Dans l’onglet **Couleur**, cochez **Tout afficher** et choisissez **ACES/ACEScg** dans **Remplacer l’espace colorimétrique des médias**. Sans ce réglage, After Effects ne sait pas dans quel espace le rendu a été calculé.
+
+   ![Le menu Interpréter un métrage › Principal dans le panneau Projet](images/ae-interpreter-metrage-menu.png){: .w75}
+   *Clic droit sur le métrage EXR dans le panneau Projet › Interpréter un métrage › Principal… (Ctrl + Alt + G). — Capture After Effects*
+
+   ![Interprétation du métrage : espace colorimétrique des médias ACES/ACEScg](images/ae-interpreter-metrage-acescg.png){: .w75}
+   *Interpréter le métrage, onglet Couleur : Remplacer l’espace colorimétrique des médias par ACES/ACEScg, avec Tout afficher coché. — Capture After Effects*
+
+5. Pour un étalonnage « cinéma » rapide, utilisez **Red Giant Looks**. **Attention** : dans Looks, réglez l’espace colorimétrique **en entrée/sortie** sur **ACEScg (Linear)**, comme le projet. Le menu **Aperçu** reste en **sRGB** pour l’affichage. Avec une autre entrée, Looks interprète mal les couleurs linéaires et l’image paraît fausse.
+
+   ![Magic Bullet Looks réglé en entrée/sortie sur ACEScg (Linear)](images/looks-entree-acescg-linear.png){: .w90}
+   *Magic Bullet Looks : espace colorimétrique en entrée/sortie ACEScg (Linear), aperçu en sRGB. — Capture Red Giant Looks*
+
+6. **À l’export** : ajoutez la composition à la **file d’attente de rendu**, puis cliquez sur le lien bleu du **Module de sortie** pour ouvrir ses paramètres.
 
    ![La file d’attente de rendu d’After Effects](images/ae-file-attente-module-sortie.jpg){: .w90}
    *La file d’attente de rendu : un clic sur le lien du Module de sortie ouvre ses paramètres. — Capture After Effects*
 
-6. Dans l’onglet **Couleur** du module de sortie, cochez **Tout afficher**, puis choisissez comme **Espace color. de sortie** : **sRGB – Display/ACES 2.0 – SDR 100 nits (Rec.709)**, la même transformation que l’affichage du projet. La description confirme la conversion : de l’espace de travail ACEScg vers sRGB – Display/ACES 2.0.
+7. Dans l’onglet **Couleur** du module de sortie, cochez **Tout afficher**, puis choisissez comme **Espace color. de sortie** : **sRGB – Display/ACES 2.0 – SDR 100 nits (Rec.709)**, la même transformation que l’affichage du projet. La description confirme la conversion : de l’espace de travail ACEScg vers sRGB – Display/ACES 2.0.
 
    ![Paramètres du module de sortie, onglet Couleur, en ACES 2.0](images/ae-module-sortie-couleur-aces2.jpg){: .w60}
    *Paramètres du module de sortie, onglet Couleur : espace de sortie sRGB – Display/ACES 2.0 – SDR 100 nits (Rec.709), avec Tout afficher coché. — Capture After Effects*
@@ -148,3 +160,4 @@ Pour garder toute la dynamique de l’image et des couleurs identiques :
 - Métal et verre : prévoyez toujours quelque chose à refléter.
 - Brouillard volumétrique : retirez le volume des lumières trop présentes.
 - After Effects : EXR 32 bits + projet OCIO en ACES 2.0 (travail ACEScg), sinon les couleurs sont fausses.
+- Métrage EXR interprété en ACES/ACEScg (`Ctrl + Alt + G`), Looks réglé en entrée sur ACEScg (Linear).
